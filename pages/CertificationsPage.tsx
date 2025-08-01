@@ -11,7 +11,7 @@ interface CertificationLogoProps {
 }
 
 const CertificationLogo: React.FC<CertificationLogoProps> = ({ name, logoPath, description }) => (
-  <div className="bg-white p-8 flex flex-col items-center justify-center rounded-xl shadow-lg h-56 transform hover:scale-105 transition-all duration-300 border border-gray-100 hover:shadow-xl">
+  <div className="bg-white p-8 flex flex-col items-center justify-center rounded-2xl shadow-xl h-56 transform hover:scale-105 transition-all duration-300 border border-gray-100">
     <div className="flex-1 flex items-center justify-center mb-4">
       <img 
         src={logoPath} 

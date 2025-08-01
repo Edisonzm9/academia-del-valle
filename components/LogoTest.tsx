@@ -1,6 +1,19 @@
 import React from 'react';
 import { ASSETS } from '../constants';
 
+// Componente de logo temporal
+const TempLogo: React.FC = () => (
+  <div className="flex items-center space-x-2">
+    <div className="w-12 h-12 bg-adv-red rounded-lg flex items-center justify-center">
+      <span className="text-white font-bold text-xl">A</span>
+    </div>
+    <div>
+      <div className="text-adv-blue font-bold text-lg">Academia del Valle</div>
+      <div className="text-gray-600 text-sm">EC</div>
+    </div>
+  </div>
+);
+
 const LogoTest: React.FC = () => {
   const testLogos = [
     { name: 'Ministerio del Trabajo', path: ASSETS.CERTIFICATIONS.MINISTERIO_TRABAJO },
@@ -37,4 +50,5 @@ const LogoTest: React.FC = () => {
   );
 };
 
+export { TempLogo };
 export default LogoTest; 

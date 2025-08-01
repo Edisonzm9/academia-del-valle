@@ -1,8 +1,10 @@
 
 import React from 'react';
-import MailIcon from '../components/icons/MailIcon';
-import PhoneIcon from '../components/icons/PhoneIcon';
-import MapPinIcon from '../components/icons/MapPinIcon';
+import { 
+  EnvelopeIcon,
+  PhoneIcon,
+  MapPinIcon
+} from '@heroicons/react/24/outline';
 
 const ContactPage: React.FC = () => {
   return (
@@ -57,7 +59,7 @@ const ContactPage: React.FC = () => {
               </div>
             </div>
              <div className="flex items-start">
-              <MailIcon className="w-8 h-8 mr-4 text-adv-red flex-shrink-0 mt-1" />
+              <EnvelopeIcon className="w-8 h-8 mr-4 text-adv-red flex-shrink-0 mt-1" />
               <div>
                 <h3 className="font-bold text-lg text-gray-800">Email</h3>
                 <p className="text-gray-600">info@academiadelvalle.ec</p>

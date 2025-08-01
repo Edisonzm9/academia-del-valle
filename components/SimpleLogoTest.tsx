@@ -5,9 +5,9 @@ const SimpleLogoTest: React.FC = () => {
     '/images/logo-ministerio.webp',
     '/images/logo-senescyt.webp', 
     '/images/logo-camara.webp',
-    './images/logo-ministerio.webp',
-    './images/logo-senescyt.webp',
-    './images/logo-camara.webp'
+    '/images/logo-ministerio.png',
+    '/images/logo-senescyt.jpg',
+    '/images/logo-camara.png'
   ];
 
   return (

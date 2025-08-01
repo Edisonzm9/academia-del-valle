@@ -1,4 +1,11 @@
 import React, { useState, useEffect } from 'react';
+import { 
+  AcademicCapIcon, 
+  BookOpenIcon, 
+  LightBulbIcon,
+  UserGroupIcon,
+  CheckCircleIcon
+} from '@heroicons/react/24/outline';
 
 interface LoadingScreenProps {
   onLoadingComplete: () => void;
@@ -8,6 +15,15 @@ const LoadingScreen: React.FC<LoadingScreenProps> = ({ onLoadingComplete }) => {
   const [progress, setProgress] = useState(0);
   const [showContent, setShowContent] = useState(false);
   const [fadeOut, setFadeOut] = useState(false);
+  const [currentStep, setCurrentStep] = useState(0);
+
+  const loadingSteps = [
+    { icon: <AcademicCapIcon className="w-8 h-8" />, text: "Preparando tu experiencia educativa..." },
+    { icon: <BookOpenIcon className="w-8 h-8" />, text: "Cargando recursos de aprendizaje..." },
+    { icon: <LightBulbIcon className="w-8 h-8" />, text: "Activando tu potencial..." },
+    { icon: <UserGroupIcon className="w-8 h-8" />, text: "Conectando con tu futuro..." },
+    { icon: <CheckCircleIcon className="w-8 h-8" />, text: "¡Listo para potenciar tu futuro!" }
+  ];
 
   useEffect(() => {
     // Simular progreso de carga
@@ -26,9 +42,20 @@ const LoadingScreen: React.FC<LoadingScreenProps> = ({ onLoadingComplete }) => {
       setShowContent(true);
     }, 300);
 
+    // Cambiar pasos de carga
+    const stepTimer = setInterval(() => {
+      setCurrentStep(prev => {
+        if (prev < loadingSteps.length - 1) {
+          return prev + 1;
+        }
+        return prev;
+      });
+    }, 800);
+
     return () => {
       clearInterval(timer);
       clearTimeout(contentTimer);
+      clearInterval(stepTimer);
     };
   }, []);
 
@@ -56,15 +83,15 @@ const LoadingScreen: React.FC<LoadingScreenProps> = ({ onLoadingComplete }) => {
           : 'opacity-100'
       }`}
       style={{
-        background: 'linear-gradient(135deg, #000000 0%, #1a1a1a 50%, #000000 100%)'
+        background: 'linear-gradient(135deg, #0B0B32 0%, #1a1a4a 50%, #0B0B32 100%)'
       }}
     >
-      {/* Efecto de partículas de fondo */}
+      {/* Efecto de partículas educativas */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        {[...Array(12)].map((_, i) => (
+        {[...Array(15)].map((_, i) => (
           <div
             key={i}
-            className="absolute w-1 h-1 bg-red-500 rounded-full particle"
+            className="absolute w-2 h-2 bg-adv-red rounded-full particle"
             style={{
               left: `${Math.random() * 100}%`,
               top: `${Math.random() * 100}%`,
@@ -80,6 +107,11 @@ const LoadingScreen: React.FC<LoadingScreenProps> = ({ onLoadingComplete }) => {
         <div className={`transition-all duration-700 ease-out ${
           showContent ? 'opacity-100 transform translate-y-0' : 'opacity-0 transform translate-y-8'
         }`}>
+          <div className="flex justify-center mb-6">
+            <div className="w-24 h-24 bg-adv-red rounded-2xl flex items-center justify-center shadow-2xl">
+              <AcademicCapIcon className="w-12 h-12 text-white" />
+            </div>
+          </div>
           <h1 className="text-4xl md:text-6xl font-montserrat text-white mb-4 text-glow animate-fade-in-down">
             Academia del Valle
           </h1>
@@ -103,41 +135,60 @@ const LoadingScreen: React.FC<LoadingScreenProps> = ({ onLoadingComplete }) => {
           </p>
         </div>
 
-        {/* Elementos decorativos */}
+        {/* Pasos de carga educativos */}
         <div className={`mt-8 transition-all duration-700 delay-500 ${
           showContent ? 'opacity-100' : 'opacity-0'
         }`}>
-          <div className="flex justify-center space-x-2">
-            <div className="w-2 h-2 bg-red-500 rounded-full animate-pulse-slow"></div>
-            <div className="w-2 h-2 bg-red-500 rounded-full animate-pulse-slow" style={{ animationDelay: '0.2s' }}></div>
-            <div className="w-2 h-2 bg-red-500 rounded-full animate-pulse-slow" style={{ animationDelay: '0.4s' }}></div>
+          <div className="flex flex-col items-center space-y-4">
+            {loadingSteps.map((step, index) => (
+              <div 
+                key={index}
+                className={`flex items-center space-x-3 transition-all duration-500 ${
+                  index <= currentStep 
+                    ? 'opacity-100 transform translate-x-0' 
+                    : 'opacity-30 transform translate-x-4'
+                }`}
+              >
+                <div className={`w-10 h-10 rounded-full flex items-center justify-center transition-all duration-300 ${
+                  index <= currentStep ? 'bg-adv-red text-white' : 'bg-gray-600 text-gray-400'
+                }`}>
+                  {step.icon}
+                </div>
+                <span className={`text-sm font-medium transition-all duration-300 ${
+                  index <= currentStep ? 'text-white' : 'text-gray-400'
+                }`}>
+                  {step.text}
+                </span>
+              </div>
+            ))}
           </div>
         </div>
 
-        {/* Mensaje de carga */}
-        <div className={`mt-6 transition-all duration-700 delay-700 ${
-          showContent ? 'opacity-100 transform translate-y-0' : 'opacity-0 transform translate-y-4'
-        }`}>
-          <p className="text-gray-400 text-sm font-roboto animate-fade-in-up">
-            Preparando tu experiencia educativa...
-          </p>
-        </div>
-
-        {/* Elementos decorativos adicionales */}
-        <div className={`mt-8 transition-all duration-700 delay-900 ${
+        {/* Elementos decorativos educativos */}
+        <div className={`mt-12 transition-all duration-700 delay-700 ${
           showContent ? 'opacity-100' : 'opacity-0'
         }`}>
-          <div className="flex justify-center space-x-4">
-            <div className="w-1 h-8 bg-gradient-to-t from-red-500 to-transparent rounded-full animate-bounce-slow"></div>
-            <div className="w-1 h-12 bg-gradient-to-t from-red-500 to-transparent rounded-full animate-bounce-slow" style={{ animationDelay: '0.3s' }}></div>
-            <div className="w-1 h-6 bg-gradient-to-t from-red-500 to-transparent rounded-full animate-bounce-slow" style={{ animationDelay: '0.6s' }}></div>
+          <div className="flex justify-center space-x-6">
+            <div className="w-2 h-12 bg-gradient-to-t from-adv-red to-transparent rounded-full animate-bounce-slow"></div>
+            <div className="w-2 h-16 bg-gradient-to-t from-adv-red to-transparent rounded-full animate-bounce-slow" style={{ animationDelay: '0.3s' }}></div>
+            <div className="w-2 h-8 bg-gradient-to-t from-adv-red to-transparent rounded-full animate-bounce-slow" style={{ animationDelay: '0.6s' }}></div>
+            <div className="w-2 h-14 bg-gradient-to-t from-adv-red to-transparent rounded-full animate-bounce-slow" style={{ animationDelay: '0.9s' }}></div>
           </div>
+        </div>
+
+        {/* Mensaje motivacional */}
+        <div className={`mt-8 transition-all duration-700 delay-900 ${
+          showContent ? 'opacity-100 transform translate-y-0' : 'opacity-0 transform translate-y-4'
+        }`}>
+          <p className="text-gray-400 text-sm font-roboto animate-fade-in-up italic">
+            "La educación es el arma más poderosa que puedes usar para cambiar el mundo"
+          </p>
         </div>
       </div>
 
       {/* Efecto de brillo en las esquinas */}
-      <div className="absolute top-0 left-0 w-32 h-32 bg-gradient-to-br from-red-500/20 to-transparent rounded-full blur-xl"></div>
-      <div className="absolute bottom-0 right-0 w-32 h-32 bg-gradient-to-tl from-red-500/20 to-transparent rounded-full blur-xl"></div>
+      <div className="absolute top-0 left-0 w-32 h-32 bg-gradient-to-br from-adv-red/20 to-transparent rounded-full blur-xl"></div>
+      <div className="absolute bottom-0 right-0 w-32 h-32 bg-gradient-to-tl from-adv-red/20 to-transparent rounded-full blur-xl"></div>
     </div>
   );
 };

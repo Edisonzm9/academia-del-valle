@@ -1,0 +1,18 @@
+<svg width="200" height="80" viewBox="0 0 200 80" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#FF0000;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#0B0B32;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Fondo del logo -->
+  <rect x="10" y="20" width="60" height="40" rx="8" fill="url(#logoGradient)"/>
+  
+  <!-- Letra A -->
+  <text x="40" y="45" font-family="Arial, sans-serif" font-size="24" font-weight="bold" fill="white" text-anchor="middle">A</text>
+  
+  <!-- Texto de la academia -->
+  <text x="85" y="30" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#0B0B32">Academia del Valle</text>
+  <text x="85" y="45" font-family="Arial, sans-serif" font-size="10" fill="#666666">EC</text>
+</svg> 
