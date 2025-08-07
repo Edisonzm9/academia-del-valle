@@ -9,7 +9,8 @@ import {
   MapPinIcon,
   ComputerDesktopIcon,
   PlayIcon,
-  CheckCircleIcon
+  CheckCircleIcon,
+  ArrowRightIcon
 } from '@heroicons/react/24/outline';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
@@ -146,9 +147,18 @@ const HomePage: React.FC = () => {
               <p className="text-xl text-gray-600 mt-4 max-w-3xl mx-auto">Explora nuestra oferta formativa y encuentra el curso perfecto para impulsar tu carrera.</p>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {DUMMY_COURSES.map((course) => (
+              {DUMMY_COURSES.slice(0, 6).map((course) => (
                 <CourseCard key={course.id} course={course} />
               ))}
+            </div>
+            <div className="text-center mt-12">
+              <a 
+                href="#cursos" 
+                className="inline-flex items-center bg-adv-red text-white font-bold py-4 px-8 rounded-xl hover:bg-red-700 transition-all duration-300 transform hover:scale-105 shadow-xl"
+              >
+                Ver Todos los Cursos
+                <ArrowRightIcon className="w-5 h-5 ml-2" />
+              </a>
             </div>
           </div>
         </section>

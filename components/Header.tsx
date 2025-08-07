@@ -59,10 +59,37 @@ const Header: React.FC = () => {
     textUnderlineOffset: '4px'
   };
 
+  const handleNavigation = (path: string) => {
+    if (path === '#cursos') {
+      // Navegar a la página de cursos
+      window.history.pushState({}, '', '/cursos');
+      const event = new PopStateEvent('popstate');
+      window.dispatchEvent(event);
+    } else if (path === '#inicio') {
+      // Navegar a la página principal
+      window.history.pushState({}, '', '/');
+      const event = new PopStateEvent('popstate');
+      window.dispatchEvent(event);
+    } else {
+      // Navegación normal para secciones de la página principal
+      const element = document.querySelector(path);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+  };
+
   return (
     <header className="bg-white/95 backdrop-blur-md shadow-lg sticky top-0 z-50 border-b border-gray-100">
       <div className="container mx-auto px-6 py-4 flex justify-between items-center">
-        <a href="#inicio" className="transform hover:scale-105 transition-transform duration-300">
+        <a 
+          href="#inicio" 
+          className="transform hover:scale-105 transition-transform duration-300"
+          onClick={(e) => {
+            e.preventDefault();
+            handleNavigation('#inicio');
+          }}
+        >
           {logoError ? (
             <TempLogo />
           ) : (
@@ -81,6 +108,10 @@ const Header: React.FC = () => {
               href={link.path}
               className="text-adv-blue hover:text-adv-red transition-all duration-300 font-semibold text-lg relative group"
               style={activeSection === link.path ? activeLinkStyle : {}}
+              onClick={(e) => {
+                e.preventDefault();
+                handleNavigation(link.path);
+              }}
             >
               {link.name}
               <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-adv-red transition-all duration-300 group-hover:w-full"></span>
@@ -105,7 +136,11 @@ const Header: React.FC = () => {
               <a
                 key={link.name}
                 href={link.path}
-                onClick={() => setIsMenuOpen(false)}
+                onClick={(e) => {
+                  e.preventDefault();
+                  setIsMenuOpen(false);
+                  handleNavigation(link.path);
+                }}
                 className="text-adv-blue hover:text-adv-red transition-all duration-300 font-semibold text-lg py-2 px-4 rounded-lg hover:bg-gray-50"
                 style={activeSection === link.path ? activeLinkStyle : {}}
               >
