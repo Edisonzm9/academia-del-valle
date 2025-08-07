@@ -22,6 +22,13 @@ const TempLogo: React.FC = () => (
 const Footer: React.FC = () => {
   const [logoError, setLogoError] = useState(false);
 
+  const handleNavigation = (path: string) => {
+    const element = document.querySelector(path);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <footer className="bg-adv-blue text-white" id="contacto">
       <div className="container mx-auto px-6 py-16">
@@ -73,10 +80,54 @@ const Footer: React.FC = () => {
           <div>
             <h3 className="font-montserrat text-2xl font-bold text-white mb-8 text-center md:text-left">Enlaces Rápidos</h3>
             <ul className="space-y-4">
-              <li><a href="#cursos" className="text-lg hover:text-adv-red transition-colors duration-300 block py-2">Cursos</a></li>
-              <li><a href="#nosotros" className="text-lg hover:text-adv-red transition-colors duration-300 block py-2">Nosotros</a></li>
-              <li><a href="#certificaciones" className="text-lg hover:text-adv-red transition-colors duration-300 block py-2">Certificaciones</a></li>
-              <li><a href="#contacto" className="text-lg hover:text-adv-red transition-colors duration-300 block py-2">Contacto</a></li>
+              <li>
+                <a 
+                  href="#cursos" 
+                  className="text-lg hover:text-adv-red transition-colors duration-300 block py-2 cursor-pointer"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleNavigation('#cursos');
+                  }}
+                >
+                  Cursos
+                </a>
+              </li>
+              <li>
+                <a 
+                  href="#nosotros" 
+                  className="text-lg hover:text-adv-red transition-colors duration-300 block py-2 cursor-pointer"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleNavigation('#nosotros');
+                  }}
+                >
+                  Nosotros
+                </a>
+              </li>
+              <li>
+                <a 
+                  href="#certificaciones" 
+                  className="text-lg hover:text-adv-red transition-colors duration-300 block py-2 cursor-pointer"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleNavigation('#certificaciones');
+                  }}
+                >
+                  Certificaciones
+                </a>
+              </li>
+              <li>
+                <a 
+                  href="#contacto" 
+                  className="text-lg hover:text-adv-red transition-colors duration-300 block py-2 cursor-pointer"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleNavigation('#contacto');
+                  }}
+                >
+                  Contacto
+                </a>
+              </li>
             </ul>
           </div>
         </div>

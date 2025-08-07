@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import HomePage from './pages/HomePage';
-import CoursesPage from './pages/CoursesPage';
 import CourseDetailPage from './pages/CourseDetailPage';
 import LoadingScreen from './components/LoadingScreen';
 
@@ -27,9 +26,6 @@ const App: React.FC = () => {
         const id = path.split('/')[2];
         setCourseId(id);
         setCurrentPage('course-detail');
-      } else if (path === '/cursos') {
-        setCurrentPage('courses');
-        setCourseId(null);
       } else {
         setCurrentPage('home');
         setCourseId(null);
@@ -75,8 +71,6 @@ const App: React.FC = () => {
   const renderContent = () => {
     if (currentPage === 'course-detail' && courseId) {
       return <CourseDetailPage courseId={courseId} />;
-    } else if (currentPage === 'courses') {
-      return <CoursesPage />;
     } else {
       return <HomePage />;
     }

@@ -146,14 +146,14 @@ const CourseDetailPage: React.FC<CourseDetailPageProps> = ({ courseId }) => {
           {/* Contenido */}
           <div className="relative z-10 container mx-auto px-6">
             <a 
-              href="#cursos" 
-              className="inline-flex items-center text-white hover:text-adv-red transition-colors duration-300 mb-6"
+              href="/#cursos" 
+              className="inline-flex items-center text-white hover:text-adv-red transition-colors duration-300 mb-8"
             >
               <ArrowLeftIcon className="w-5 h-5 mr-2" />
               Volver a los Cursos
             </a>
             
-            <span className="inline-block px-4 py-2 bg-adv-red text-white rounded-full text-sm font-semibold mb-4">
+            <span className="inline-block px-4 py-2 bg-adv-red text-white rounded-full text-sm font-semibold mb-6">
               {course.area}
             </span>
             
@@ -219,15 +219,26 @@ const CourseDetailPage: React.FC<CourseDetailPageProps> = ({ courseId }) => {
                   </ul>
                   
                   <div className="space-y-4">
-                    <a 
-                      href="#contacto" 
-                      className="block w-full bg-adv-red text-white font-bold py-4 px-6 rounded-xl hover:bg-red-700 transition-all duration-300 text-center transform hover:scale-105 shadow-lg"
-                    >
-                      Inscríbete en este Curso
-                    </a>
+                  
                     
                     <a 
-                      href={`https://wa.me/593123456789?text=Hola,%20me%20interesa%20el%20curso%20de%20${encodeURIComponent(course.title)}`}
+                      href={`https://wa.me/593123456789?text=${encodeURIComponent(`Hola! 👋 Me interesa mucho el curso de *${course.title}* 📚
+
+📋 *Información del curso:*
+• Área: ${course.area}
+• Duración: ${course.duration} (${course.hours})
+• Instructor: ${course.instructor}
+• Código: ${course.code}
+
+🎯 *Enfoque:* ${course.focus}
+
+Me gustaría obtener más información sobre:
+• Inscripciones y horarios
+• Costos y formas de pago
+• Requisitos para el curso
+• Certificación al finalizar
+
+¿Podrían ayudarme con esta información? Muchas gracias! 🙏`)}`}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="block w-full bg-green-500 text-white font-bold py-4 px-6 rounded-xl hover:bg-green-600 transition-all duration-300 text-center transform hover:scale-105 shadow-lg"

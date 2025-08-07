@@ -2,8 +2,8 @@ import { Course, Testimonial } from './types';
 
 export const NAV_LINKS = [
   { name: 'Inicio', path: '#inicio' },
-  { name: 'Cursos', path: '#cursos' },
   { name: 'Nosotros', path: '#nosotros' },
+  { name: 'Cursos', path: '#cursos' },
   { name: 'Certificaciones', path: '#certificaciones' },
   { name: 'Contacto', path: '#contacto' },
 ];

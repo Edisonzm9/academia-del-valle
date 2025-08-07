@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { NAV_LINKS, LOGO_URL } from '../constants';
+import { ComputerDesktopIcon } from '@heroicons/react/24/outline';
 
 // Componente de logo temporal
 const TempLogo: React.FC = () => (
@@ -61,15 +62,21 @@ const Header: React.FC = () => {
 
   const handleNavigation = (path: string) => {
     if (path === '#cursos') {
-      // Navegar a la página de cursos
-      window.history.pushState({}, '', '/cursos');
-      const event = new PopStateEvent('popstate');
-      window.dispatchEvent(event);
+      // Navegar a la sección de cursos en la landing page
+      const element = document.querySelector(path);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
     } else if (path === '#inicio') {
       // Navegar a la página principal
       window.history.pushState({}, '', '/');
       const event = new PopStateEvent('popstate');
       window.dispatchEvent(event);
+      // Scroll al inicio
+      const element = document.querySelector(path);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
     } else {
       // Navegación normal para secciones de la página principal
       const element = document.querySelector(path);
@@ -117,6 +124,22 @@ const Header: React.FC = () => {
               <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-adv-red transition-all duration-300 group-hover:w-full"></span>
             </a>
           ))}
+          
+          {/* Botón Aula Virtual */}
+          <a
+            href="#aula-virtual"
+            className="inline-flex items-center bg-adv-red text-white font-bold py-2 px-4 rounded-xl hover:bg-red-700 transition-all duration-300 transform hover:scale-105 shadow-lg"
+            onClick={(e) => {
+              e.preventDefault();
+              const element = document.querySelector('#aula-virtual');
+              if (element) {
+                element.scrollIntoView({ behavior: 'smooth' });
+              }
+            }}
+          >
+            <ComputerDesktopIcon className="w-5 h-5 mr-2" />
+            Aula Virtual
+          </a>
         </nav>
         <div className="md:hidden">
           <button 
@@ -147,6 +170,23 @@ const Header: React.FC = () => {
                 {link.name}
               </a>
             ))}
+            
+            {/* Botón Aula Virtual para móvil */}
+            <a
+              href="#aula-virtual"
+              className="inline-flex items-center bg-adv-red text-white font-bold py-3 px-6 rounded-xl hover:bg-red-700 transition-all duration-300 transform hover:scale-105 shadow-lg"
+              onClick={(e) => {
+                e.preventDefault();
+                setIsMenuOpen(false);
+                const element = document.querySelector('#aula-virtual');
+                if (element) {
+                  element.scrollIntoView({ behavior: 'smooth' });
+                }
+              }}
+            >
+              <ComputerDesktopIcon className="w-5 h-5 mr-2" />
+              Aula Virtual
+            </a>
           </nav>
         </div>
       )}
